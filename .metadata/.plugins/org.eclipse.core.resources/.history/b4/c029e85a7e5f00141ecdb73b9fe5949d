@@ -1,0 +1,19 @@
+
+public class BinaryCalculator implements NumericSystemConvertible
+{
+
+	@Override
+	public int convertToDecimal(String hexNum)
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String convertFromDecimal(int decimalNum)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

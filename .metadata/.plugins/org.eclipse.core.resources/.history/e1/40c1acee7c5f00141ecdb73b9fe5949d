@@ -1,0 +1,6 @@
+
+public interface NumericSystemConvertible
+{
+	int convertToDecimal(String hexNum);
+	String convertFromDecimal(int decimalNum);
+}

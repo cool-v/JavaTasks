@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main
+{
+
+	public static void main(String[] args)
+	{
+		System.out.println("Enter hexadecimal number: ");
+		Scanner input = new Scanner(System.in);
+
+		String hexNumber = input.nextLine();
+		int hexToDecimalResult = new HexCalculator().convertToDecimal(hexNumber);
+		System.out.println(hexNumber + " = " + hexToDecimalResult);
+		
+		input.close();
+	}
+
+}

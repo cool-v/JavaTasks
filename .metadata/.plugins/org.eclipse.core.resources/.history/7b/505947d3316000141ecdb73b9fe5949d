@@ -1,0 +1,18 @@
+package diceRolling;
+
+import java.util.List;
+
+public class DiceRollingGame
+{
+	public static int calculateTurnScore(List<Integer> diceResults)
+	{
+		int turnScore = 0;
+		for (int i = 0; i < diceResults.size(); i++)
+		{
+			turnScore += diceResults.get(i);
+		}
+		
+		return turnScore;
+	}
+
+}

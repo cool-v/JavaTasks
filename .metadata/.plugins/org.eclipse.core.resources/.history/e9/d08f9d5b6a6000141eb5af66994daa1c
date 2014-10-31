@@ -1,0 +1,62 @@
+package diceRolling;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+public class Player
+{
+	private String name;
+
+	private List<List<Integer>> roundsDiceResult;
+
+	public Player(String name)
+	{
+		this.setName(name);
+		this.roundsDiceResult = new ArrayList<ArrayList<Integer>()>();
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
+	public List<Integer> getRoundsScore()
+	{
+		return roundsScore;
+	}
+
+	public void addRoundsScore(Integer currentRoundScore)
+	{
+		this.roundsScore.add(currentRoundScore);
+	}
+
+	public int getTotalScore()
+	{
+		int totalScore = 0;
+		for (int i = 0; i < this.getRoundsScore().size(); i++)
+		{
+			totalScore += getRoundsScore().get(i);
+		}
+
+		return totalScore;
+	}
+
+	public static Comparator<Player> getWinnerComperator()
+	{
+		return new Comparator<Player>()
+		{
+			@Override
+			public int compare(Player player0, Player player1)
+			{
+				return Integer.compare(player0.getTotalScore(), player1.getTotalScore());
+			}
+		};
+	}
+
+}

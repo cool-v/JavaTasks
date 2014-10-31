@@ -1,0 +1,78 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class EmployHandler
+{
+	private static final String EMPTY_STRING = "";
+
+	private static final int INVALID_AGE = -1;
+
+	private static final double INVALID_LENGHT_OF_SERVICE = -1;
+	
+	private static final int VALID_DATA_MEMEBERS_COUNT = 2;
+
+	public static List<Employee> LoadEmployeesFromFile(String pathname)
+	{
+		File fileToRead = new File(pathname);
+		Scanner reader = null;
+		try
+		{
+			reader = new Scanner(fileToRead);
+		}
+		catch (FileNotFoundException fnfe)
+		{
+			System.err.println(fnfe.getMessage());
+			System.err.println(fnfe.getStackTrace());
+		}
+		
+		Employee employee = new Employee(EMPTY_STRING, INVALID_AGE, INVALID_LENGHT_OF_SERVICE);
+		List<Employee> employeeList = new ArrayList<Employee>();
+		while (reader.hasNextLine())
+		{
+			String line = reader.nextLine();
+			if (line.equals("<<>>"))
+			{
+				if (!employee.getName().equals(EMPTY_STRING) 
+						&& employee.getAge() != INVALID_AGE
+						&& employee.getLengthOfService() != INVALID_LENGHT_OF_SERVICE)
+				{
+					employeeList.add(employee);
+					employee = new Employee(EMPTY_STRING, INVALID_AGE, INVALID_LENGHT_OF_SERVICE);
+				}
+			}
+			else
+			{
+				populateCurrentEmployeeWithData(employee, line);
+			}
+		}
+		
+		return employeeList;
+	}
+
+	private static void populateCurrentEmployeeWithData(Employee employee, String data)
+	{
+		String[] parsedData = data.split("[=]+");
+		if (parsedData.length == VALID_DATA_MEMEBERS_COUNT)
+		{
+			String commandName = parsedData[0];
+			String commandValue = parsedData[1];
+			switch (commandName)
+			{
+				case "name":
+					employee.setName(commandValue);
+					break;
+				case "age": 
+					employee.setAge(Integer.parseInt(commandValue));
+					break;
+				case "lengthOfService":
+					employee.setLengthOfService(Double.parseDouble(commandValue));
+					break;
+				default:
+					throw new IllegalArgumentException("Illegal commandName");
+			}
+		}
+	}
+}

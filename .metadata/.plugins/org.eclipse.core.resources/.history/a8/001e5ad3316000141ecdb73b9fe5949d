@@ -1,0 +1,49 @@
+package diceRolling;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Player
+{
+	private String name;
+
+	private List<Integer> roundsScore;
+
+	public Player(String name)
+	{
+		this.setName(name);
+		this.roundsScore = new ArrayList<Integer>();
+	}
+
+	String getName()
+	{
+		return name;
+	}
+
+	void setName(String name)
+	{
+		this.name = name;
+	}
+
+	List<Integer> getRoundsScore()
+	{
+		return roundsScore;
+	}
+
+	void setRoundsScore(List<Integer> roundsScore)
+	{
+		this.roundsScore = roundsScore;
+	}
+
+	int getTotalScore()
+	{
+		int totalScore = 0;
+		for (int i = 0; i < this.getRoundsScore().size(); i++)
+		{
+			totalScore += getRoundsScore().get(i);
+		}
+		
+		return totalScore;
+	}
+	
+}

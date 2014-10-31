@@ -1,0 +1,20 @@
+package diceRolling;
+
+import java.util.List;
+
+public class Main
+{
+
+	public static void main(String[] args)
+	{
+		List<Integer> diceRows = DiceHandler.rollMultipleDice(2);
+		
+		for (int i = 0; i < diceRows.size(); i++)
+		{
+			System.out.printf("Die %d is %d\n", i + 1, diceRows.get(i));
+		}
+
+
+	}
+
+}
